@@ -1,6 +1,6 @@
-import { AsyncSubject } from 'rxjs';
+import { ReplaySubject } from 'rxjs';
 
-const subject = new AsyncSubject();
+const subject = new ReplaySubject(3);
 
 subject.subscribe((value) => {
   console.log(`Observer A: ${value}`);
@@ -16,4 +16,3 @@ subject.subscribe((value) => {
 });
 
 subject.next(5);
-subject.complete();

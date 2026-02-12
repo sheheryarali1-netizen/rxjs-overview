@@ -1,6 +1,6 @@
-import { AsyncSubject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
-const subject = new AsyncSubject();
+const subject = new BehaviorSubject(0);
 
 subject.subscribe((value) => {
   console.log(`Observer A: ${value}`);
@@ -8,12 +8,9 @@ subject.subscribe((value) => {
 
 subject.next(1);
 subject.next(2);
-subject.next(3);
-subject.next(4);
 
 subject.subscribe((value) => {
   console.log(`Observer B: ${value}`);
 });
 
-subject.next(5);
-subject.complete();
+subject.next(3);
