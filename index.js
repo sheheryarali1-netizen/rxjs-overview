@@ -1,28 +1,28 @@
 import { Observable } from 'rxjs';
 
+console.log('==== Function calls ====');
+
+function foo() {
+  console.log('Hello World!');
+  return 42;
+}
+
+const x = foo();
+console.log(x);
+const y = foo();
+console.log(y);
+
+console.log('==== Observable calls ====');
+
 const observable = new Observable((subscribe) => {
-  subscribe.next(1);
-  subscribe.next(2);
-  subscribe.next(3);
-
-  setTimeout(() => {
-    subscribe.next(4);
-    subscribe.complete();
-  });
+  console.log('Hello World!');
+  subscribe.next(42);
 });
 
-console.log('Before subscirption');
-
-observable.subscribe({
-  next(value) {
-    console.log('Value:', value);
-  },
-  error(value) {
-    console.log(value);
-  },
-  complete() {
-    console.log('Stream completed');
-  },
+observable.subscribe((value) => {
+  console.log(value);
 });
 
-console.log('After subscirption');
+observable.subscribe((value) => {
+  console.log(value);
+});
